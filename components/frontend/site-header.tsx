@@ -8,6 +8,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
 import DarkMode from "../backend/DarkMode";
+import CategoriesNav from "../FormInputs/CategoriesNav";
 
 export const SiteHeader = () => {
   // const isAnAuthUser = async () => {
@@ -68,6 +69,7 @@ export const SiteHeader = () => {
           </SignedIn>
         </div>
       </nav>
+      <CategoriesNav />
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}

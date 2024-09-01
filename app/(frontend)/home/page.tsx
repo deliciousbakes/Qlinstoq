@@ -1,6 +1,5 @@
 /** @format */
 
-import CategoriesList from "./CategoriesList";
 import ProductsContainer from "./ProductsContainer";
 
 const HomePage = ({
@@ -9,10 +8,11 @@ const HomePage = ({
   searchParams: { category?: string; search?: string };
 }) => {
   return (
-    <section   className="mt-10">
-      <CategoriesList category={searchParams.category} />
+    <section className="mt-28">
+      {/* <CategoriesNav /> */}
+      {/* <CategoriesList category={searchParams.category} /> */}
       <ProductsContainer category={searchParams.category} />
-   </section>
+    </section>
   );
 };
 

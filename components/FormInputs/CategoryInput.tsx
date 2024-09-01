@@ -22,6 +22,9 @@ const CategoryInput = ({
       `}
       onClick={() => onClick(label)}
     >
+      <span>
+        <p>take it fron thier heart</p>
+      </span>
       <Icon size={30} />
       {label}
     </div>

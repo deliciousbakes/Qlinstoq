@@ -1,16 +1,10 @@
 /** @format */
 "use client";
+import CategoriesNav from "@/components/FormInputs/CategoriesNav";
 import { Menu, Package2, Search } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -21,8 +15,8 @@ import { sidebarLinks } from "../global/SidebarLinks";
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div>
-      <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+    <div className=" flex flex-col">
+      <header className="flex h-14 items-center gap-4 border-b bg-slate-600  px-4 lg:h-[60px] lg:px-6">
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -99,6 +93,7 @@ const Navbar = () => {
             <UserButton />
           </SignedIn>
         </div>
+        <CategoriesNav />
       </header>
     </div>
   );
