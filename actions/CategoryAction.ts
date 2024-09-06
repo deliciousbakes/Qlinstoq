@@ -6,7 +6,7 @@ import db from "@/lib/db";
 import { currentUser } from "@clerk/nextjs/server";
 // import { CategoryProps } from "@/types/types";
 import { revalidatePath } from "next/cache";
-import { GetUserFromDatabaseById } from "./UserActions";
+import { GetUserFromDatabaseByEmail } from "./UserActions";
 
 
 

@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import CartCount from "@/app/(frontend)/cart/CartCount";
+import { ShoppingCart } from "@/actions/CartActions";
 import Logo from "@/components/global/Logo";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { Dialog, DialogPanel } from "@headlessui/react";
@@ -8,11 +8,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
 import DarkMode from "../backend/DarkMode";
+import CategoriesNav from "../FormInputs/CategoriesNav";
+import ShoppingCartButton from "./ShoppingCartButton";
 
-export const SiteHeader = () => {
-  // const isAnAuthUser = async () => {
-  //   return await isAuth();
-  // };
+export const SiteHeader = ({ cart }: { cart: ShoppingCart }) => {
   const navigation = [
     { name: "Sales", href: "/frontend/sales" },
     { name: "About", href: "/about" },
@@ -56,8 +55,8 @@ export const SiteHeader = () => {
             </Link>
           ))}
         </div>
-        <CartCount />
         <DarkMode />
+        <ShoppingCartButton cart={cart} />
 
         <div className="flex justify-between gap-3">
           <SignedOut>
@@ -68,6 +67,7 @@ export const SiteHeader = () => {
           </SignedIn>
         </div>
       </nav>
+      <CategoriesNav />
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}

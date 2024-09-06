@@ -1,13 +1,15 @@
  
+import { getCart } from "@/actions/CartActions";
 import Footer from "@/components/frontend/Site-footer";
 import { SiteHeader } from "@/components/frontend/site-header";
 import { ReactNode } from "react";
 
 const HomeLayout = async ({ children }: { children: ReactNode }) => {
-  const session = null;
+  const cart = await getCart();
+  if (!cart) return null;
   return (
     <div className="bg-white">
-      <SiteHeader />
+      <SiteHeader cart={cart} />
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           aria-hidden="true"

@@ -43,6 +43,24 @@ model Session {
   User         User     @relation(fields: [userId], references: [id])
 }
 
+model Cart {
+  id        String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt()
+  cartItems CartItem[]
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  Cart      Cart?    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId    String?
+  productId String
+  Product   Product  @relation(fields: [productId], references: [id])
+}
+
 enum UserRole {
   USER
   ADMIN
@@ -61,7 +79,6 @@ model User {
   createdAt     DateTime       @default(now())
   Orders        Order[]
   OrderDetailss OrderDetails[]
-  Carts         Cart[]
   Products      Product[]
   Pyments       Payment[]
   Accounts      Account[]
@@ -100,8 +117,7 @@ model User {
 
 model Order {
   id           String         @id @default(uuid())
-  title        String
-  totalPaid    Int
+  orderNumber  String
   orderAmount  Int
   orderDate    DateTime       @default(now())
   createdAt    DateTime       @default(now())
@@ -126,33 +142,19 @@ model Payment {
 }
 
 model OrderDetails {
-  id          String   @id @default(uuid())
-  title       String
-  totalPaid   Int
-  orderAmount Int
-  orderDate   DateTime @default(now())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt()
-  Order       Order?   @relation(fields: [orderId], references: [id])
-  orderId     String?
-  Product     Product? @relation(fields: [productId], references: [id])
-  productId   String?
-  User        User?    @relation(fields: [userId], references: [id])
-  userId      String?
-}
-
-model Cart {
-  id          String   @id @default(uuid())
-  title       String
-  totalPaid   Int
-  orderAmount Int
-  orderDate   DateTime @default(now())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt()
-  Product     Product? @relation(fields: [productId], references: [id])
-  productId   String?
-  User        User?    @relation(fields: [userId], references: [id])
-  userId      String?
+  id        String   @id @default(uuid())
+  quantity  Int
+  price     Float
+  name      String
+  orderDate DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  Order     Order?   @relation(fields: [orderId], references: [id])
+  orderId   String?
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }
 
 model Product {
@@ -170,5 +172,5 @@ model Product {
   createdAt      DateTime       @default(now())
   User           User?          @relation(fields: [userId], references: [id])
   orderDetails   OrderDetails[]
-  Cart           Cart[]
+  cartItems      CartItem[]
 }

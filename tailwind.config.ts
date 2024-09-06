@@ -125,6 +125,7 @@ export default withUt({
     },
   },
   plugins: [
+    require("daisyui"),
     require("tailwindcss-animate"),
     require('@tailwindcss/forms'),
     addVariablesForColors,
